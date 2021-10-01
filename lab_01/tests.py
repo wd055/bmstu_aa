@@ -3,9 +3,9 @@ from recursive_method import levenstein_r
 from recmat_method import levenstein_rm
 from dl_matrix import dl_matrix
 
-from random import randint, random
+from random import randint
 from time import process_time
-
+import tracemalloc
 
 def inputed_test(s1, s2):
     print("Реузльтат, используя матричный метод: ", levenstein_m(s1, s2))
@@ -72,35 +72,35 @@ def measure_time(repeats, max_length, step, measure_recursion_flag=False):
 
     return lengthes, method_results
 
-# def measure_memory_method(origins, targets, method):
-#     l = len(origins)
-#     peak_memory = 0
-#     for i in range(l):
-#         s1 = origins[i]
-#         s2 = targets[i]
+def measure_memory_method(origins, targets, method):
+    l = len(origins)
+    peak_memory = 0
+    for i in range(l):
+        s1 = origins[i]
+        s2 = targets[i]
 
-#         tracemalloc.start()
-#         method(s1, s2)
-#         current, peak = tracemalloc.get_traced_memory()
-#         internal = tracemalloc.get_tracemalloc_memory()
-#         tracemalloc.stop()
+        tracemalloc.start()
+        method(s1, s2)
+        current, peak = tracemalloc.get_traced_memory()
+        internal = tracemalloc.get_tracemalloc_memory()
+        tracemalloc.stop()
 
-#         peak_memory += peak - internal
+        peak_memory += peak - internal
 
-#     return peak_memory / l
+    return peak_memory / l
 
-# def measure_memory(repeats):
-#     methods = [levenstein_m, levenstein_rm, dl_matrix]
+def measure_memory(repeats):
+    methods = [levenstein_m, levenstein_rm, dl_matrix]
 
-#     method_results = [[], [], []]
-#     lengthes = []
+    method_results = [[], [], []]
+    lengthes = []
 
-#     for i in range(1, 11):
-#         origins, targets = generate_strings(repeats, i*10, rand_generator)
-#         lengthes.append(i*10)
+    for i in range(1, 11):
+        origins, targets = generate_strings(repeats, i*10, rand_generator)
+        lengthes.append(i*10)
 
-#         for j in range(len(methods)):
-#             method_results[j].append(
-#                 measure_memory_method(origins, targets, methods[j]))
+        for j in range(len(methods)):
+            method_results[j].append(
+                measure_memory_method(origins, targets, methods[j]))
 
-#     return lengthes, method_results
+    return lengthes, method_results

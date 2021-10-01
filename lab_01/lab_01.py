@@ -16,6 +16,7 @@ def plotter(axes, data1, data2, param_dict):
 
 
 def main():
+    # print(measure_memory(10))
     while 1:
         print("Меню")
         print("1. Запустить с введёнными строками")
