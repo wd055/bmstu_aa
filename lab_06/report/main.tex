@@ -1,0 +1,34 @@
+\documentclass{report}
+
+\include{preamble}
+ 
+\begin{document}
+
+\include{title}
+
+\setcounter{page}{2}
+\tableofcontents
+  
+\newpage
+% \printnomenclature % Автоматический список сокращений
+
+\include{12-intro}
+
+\mainmatter % включает нумерацию глав и секций в документе ниже
+
+\include{20-analysis}
+\include{30-design}
+\include{40-impl}
+\include{50-research}
+
+\backmatter %% окончание нумерованная часть документа и начинаются ссылки и
+            
+\include{80-conclusion}
+
+
+\include{81-biblio}
+
+\appendix   % приложения
+\include{90-appendix1}
+
+\end{document}
